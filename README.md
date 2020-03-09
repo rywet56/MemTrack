@@ -33,5 +33,5 @@ dummy_func()
  
  # Credit
  Inspiration drawn from 
- - https://www.youtube.com/watch?v=IEEhzQoKtQU&t=1148s
- - https://medium.com/survata-engineering-blog/monitoring-memory-usage-of-a-running-python-program-49f027e3d1ba
+ - https://www.youtube.com/watch?v=IEEhzQoKtQU&t=1148s ([Corey M. Schafer](https://github.com/CoreyMSchafer?tab=repositories))
+ - https://medium.com/survata-engineering-blog/monitoring-memory-usage-of-a-running-python-program-49f027e3d1ba ([Russell Keith-Magee](https://github.com/freakboy3742))

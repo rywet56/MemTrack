@@ -10,6 +10,7 @@ Download the file mem_usage.py and copy it into your project folder.
 - execute the decorated function
 - a graph showing the peak memory usage over time will be saved into the current working directory
 
+```python
 from mem_usage import get_memory_usage
 from time import sleep
 
@@ -21,3 +22,4 @@ def dummy_func():
         sleep(0.00001)
 
 dummy_func()
+```

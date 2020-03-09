@@ -10,18 +10,33 @@ class MemoryMonitor:
         self.keep_measuring = True
 
     def measure_usage(self):
+        """
+        Recording peak memory usage of current process at inverals of 0.0001 seconds until instance variable
+        _keeep_measuring is False.
+        Saving those results in list memory_use.
+        :return: list of peak memory usages with interval of 0.0001 seconds in MB
+        """
+        basal_memory_use = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000000
         memory_use = []
         while self.keep_measuring:
             # print(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
             # yield resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-            memory_use.append(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss - sys.getsizeof(memory_use))
             # print(str(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss) + " -- " + str(sys.getsizeof(memory_use)))
+
+            # get current usage in megabyte
+            memory_use.append(((resource.getrusage(resource.RUSAGE_SELF).ru_maxrss - sys.getsizeof(memory_use))/1000000)
+                              - basal_memory_use)
             sleep(0.00001)
 
         return memory_use
 
 
 def create_graph(interval, mem_usage_list):
+    """
+    creates a graph using matplotlib by plotting memory usage in MB against time axis in seconds
+    :param interval: expected interval for x-axis
+    :param mem_usage_list: list containing memory usage in MB
+    """
     # create timepoints
     time_points = [i*interval for i in range(len(mem_usage_list))]
 
@@ -49,26 +64,9 @@ def get_memory_usage(func):
             monitor.keep_measuring = False
             mem_result = mem_thread.result()
 
-            create_graph(interval=0.3, mem_usage_list=mem_result)
+            create_graph(interval=0.00001, mem_usage_list=mem_result)
 
         return fn_result
     return measured_func
 
 
-@get_memory_usage
-def do_it(k):
-    print(f'sleeping {k} second(s) ... ')
-    sleep(k)
-
-    return 'done sleeping ... '
-
-
-@get_memory_usage
-def dummy_func():
-    u = []
-    for k in range(0, 1000):
-        u.append([1])
-        sleep(0.00001)
-
-
-dummy_func()

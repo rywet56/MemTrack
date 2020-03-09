@@ -26,3 +26,12 @@ dummy_func()
  <p align="center">
   <img src="https://user-images.githubusercontent.com/43107602/76205699-11b54780-61fb-11ea-9a80-aab52f152e58.png"  width="500">
  </p>
+ 
+ # Remarks
+ This implementation only provides a scaffold and is under developement.
+ This version has not been tested thouroughly yet.
+ 
+ # Credit
+ Inspiration drawn from 
+ - https://www.youtube.com/watch?v=IEEhzQoKtQU&t=1148s
+ - https://medium.com/survata-engineering-blog/monitoring-memory-usage-of-a-running-python-program-49f027e3d1ba
